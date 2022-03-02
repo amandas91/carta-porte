@@ -1,0 +1,328 @@
+
+<mat-vertical-stepper [linear]="isLinear" #stepper [selectedIndex]="index">
+    <!-- change default 'edit' icon -->
+    <ng-template matStepperIcon="budget">
+        <mat-icon>border_color</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="receptor">
+        <mat-icon>face</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="collection">
+        <mat-icon>face</mat-icon>
+    </ng-template>
+
+
+    <ng-template matStepperIcon="payments">
+        <mat-icon>airport_shuttle</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="commissions">
+        <mat-icon>monitor_weight</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="ubicacion_origen">
+        <mat-icon>fmd_good</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="generacion_carta">
+        <mat-icon>description</mat-icon>
+    </ng-template>
+    <!-- --------------------------------- -->
+    
+    <!-- [stepControl]="firstFormGroup" -->
+    <mat-step label="{{'TRIPS.STEPS.BUDGET' | translate}}" state="budget">
+
+        <div class="mt-4" fxLayout="column" fxLayoutGap="8px" [formGroup]="editForm" >
+            <h1>Emisor</h1>
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end">
+                <mat-form-field fxFlex="33%" appearance="outline">
+                    <mat-label >Nombre</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="Nombre" />
+                </mat-form-field>
+                
+                <mat-form-field fxFlex="33%" appearance="outline">
+                    <mat-label >RFC</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="Rfc" value="URE180429TM6" />
+                </mat-form-field>
+                
+                <mat-form-field fxFlex="33%" appearance="outline">
+                    <mat-label >Regimen Fiscal</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="RegimenFiscal"  />
+                </mat-form-field>
+                
+               
+            </div>
+            <h1>Expedido</h1>
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end">
+                
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>País</mat-label>
+                    <mat-select name="catPaises" formControlName="Pais">
+                        <mat-option *ngFor="let item of catPaises" [value]="item.Nombre">
+                            {{item.Nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select name="catOwners" formControlName="Estado">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>Municipio</mat-label>
+                    <mat-select name="catOwners" formControlName="Municipio">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>CP</mat-label>
+                    <mat-select name="catOwners" formControlName="CodigoPostal">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> 
+                
+            </div>
+        </div>
+
+    </mat-step>
+ 
+    <mat-step label="{{'TRIPS.STEPS.RECEPTOR' | translate}}" state="receptor">
+        <div class="mt-4" fxLayout="column" fxLayoutGap="8px" [formGroup]="editForm" >
+           
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end">
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >RFC</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="RfcReceptor"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Nombre</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="NombreReceptor"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Uso CFDI</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="UsoCFDI"  />
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-step>
+
+  
+    <mat-step label="{{'TRIPS.STEPS.COLLECTIONS_INVOICING' |  translate}}" state="collection">
+        <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end" [formGroup]="editForm">
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >RFC operador</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="RFCFigura"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Número de licencia</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="NumLicencia"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Nombre de operador / Chofer </mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="NombreFigura"  />
+                </mat-form-field>
+               
+            </div>
+
+    </mat-step>
+
+    <mat-step label="{{'TRIPS.STEPS.PAYMENTS' | translate}}" state="payments">
+           
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end" [formGroup]="editForm" >
+               
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label>Permiso SCT</mat-label>
+                    <mat-select name="catOwners" formControlName="PermSCT">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label>Confuguración Vehicular</mat-label>
+                    <mat-select name="catOwners" formControlName="ConfigVehicular">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Número Permiso SCT</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="NumPermisoSCT"  />
+                </mat-form-field>
+               
+            </div>
+
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end" [formGroup]="editForm">
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Año Camión</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="AnioModeloVM"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Número de Placa</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="PlacaVM"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Poliza Responsabilidad Civil</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="PolizaRespCivil"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Aseguradora</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="AseguraRespCivil"  />
+                </mat-form-field>
+               
+            </div>
+
+    </mat-step>
+
+    <mat-step label="{{'TRIPS.STEPS.COMMISSIONS' | translate}}" state="commissions">
+        <div class="mt-4" fxLayout="column" fxLayoutGap="8px" [formGroup]="editForm" >
+           
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end">
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>Tipo de Producto</mat-label>
+                    <mat-select name="catOwners" formControlName="BienesTransp">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <mat-select name="catOwners" formControlName="Descripcion">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >Cantidad</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="Cantidad"  />
+                </mat-form-field>
+
+               
+
+            </div>
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end">
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>Tipo Unidad</mat-label>
+                    <mat-select name="catOwners" formControlName="Unidad">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>Peso (KG)</mat-label>
+                    <mat-select name="catOwners" formControlName="PesoEnKg">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+          
+            </div>
+        </div>
+
+        
+    </mat-step>
+
+    <mat-step label="{{'TRIPS.STEPS.UBICACION_ORIGEN' | translate}}" state="ubicacion_origen">
+            <h1>Origen</h1>
+        <div class="mt-4" fxLayout="column" fxLayoutGap="8px" [formGroup]="editForm" >
+           
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end">
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >ID Ubicación</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="IDUbicacion"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label >RFC Remitente Destinatario</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="RFCRemitenteDestinatario"  />
+                </mat-form-field>
+                <mat-form-field fxFlex="35%" appearance="outline">
+                    <mat-label>Tipo de horario</mat-label>
+                    <mat-select name="catOwners" formControlName="TipoHorario">
+                        <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+               
+            </div>
+           
+        </div>
+            <h1>Destino</h1>
+        <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end" [formGroup]="editForm" >
+            <mat-form-field fxFlex="40%" appearance="outline">
+                
+                <mat-label >RFC</mat-label>
+                <input style="color: black;" autocomplete="off" matInput formControlName="Rfc"  />
+            </mat-form-field>
+            <mat-form-field fxFlex="40%" appearance="outline">
+                <mat-label >Distancia (Km)</mat-label>
+                <input style="color: black;" autocomplete="off" matInput formControlName="DistanciaRecorrida"  />
+            </mat-form-field>
+            <mat-form-field fxFlex="35%" appearance="outline">
+                <mat-label>Estado</mat-label>
+                <mat-select name="catOwners" formControlName="Estado">
+                    <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="35%" appearance="outline">
+                <mat-label>Municipio</mat-label>
+                <mat-select name="catOwners" formControlName="Municipio">
+                    <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="35%" appearance="outline">
+                <mat-label>CP</mat-label>
+                <mat-select name="catOwners" formControlName="CodigoPostal">
+                    <mat-option *ngFor="let item of catOwners" [value]="item.owner">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> 
+                
+        </div>
+        
+       
+        
+    </mat-step>
+
+    <mat-step label="{{'TRIPS.STEPS.GENERACION_CARTA' | translate}}" state="generacion_carta">
+        <div class="mt-4" fxLayout="column" fxLayoutGap="8px" [formGroup]="editForm" >
+           
+            <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="8px" fxLayoutGap.gt-xs="24px" fxLayoutAlign="end">
+                <mat-form-field fxFlex="100%" appearance="outline">
+                    <mat-label >Correo</mat-label>
+                    <input style="color: black;" autocomplete="off" matInput formControlName="Correo"  />
+                </mat-form-field>    
+            </div>
+            <div fxLayout="column" >
+                      <p>*Escribe cada direeción de correo separados por coma</p>
+                 </div>
+        </div>
+    </mat-step> 
+    
+</mat-vertical-stepper>
+
